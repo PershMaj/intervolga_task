@@ -17,6 +17,7 @@ function Ajax(data){
     xhr.send();
 }
 
+//show result block for 3 sec.
 function ShowResult(){
     main.showResult = true;
     setTimeout(function(){
@@ -32,7 +33,7 @@ var main = new Vue({
         result: '',
         showResult: false,
     },
-    created: function() {
+    created: function() {//get countries list on page load
         xhr = new XMLHttpRequest();
         path = '/php/ajax.php?';
         xhr.open('GET', path+'getCountries=1', true);

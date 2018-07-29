@@ -6,14 +6,14 @@ $getCountries = $_GET['getCountries'];
 $message = '';
 try {
     if($link = new PDO("mysql:host=$SERVER;dbname=$DB_NAME", $USER, $PASSWORD)){
-        if($country){
+        if($country){ //add country
             $stmt = $link->prepare("insert into countries (name) values (:name)");
             if($stmt->execute(array('name' => $country))){
                 echo 'ok';
             } else {
                 echo 'error';
             }   
-        } elseif ($getCountries) {
+        } elseif ($getCountries) { //get country list
             if($result = $link->query('select name from countries')){
                 while($temp = $result->fetch()){
                     $message .= $temp['name'].'$';
