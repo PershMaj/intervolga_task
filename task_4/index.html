@@ -1,0 +1,27 @@
+
+<html>
+    <head>
+        <title>Task 4</title>
+        <meta charset="utf-8">
+        <script src="vue_prod.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+        <div id="main" class="container">
+            <div id='result'>
+                <transition name="fade">
+                    <p v-if="showResult">{{ result }}</p>
+                </transition>
+            </div>
+            <input v-model.trim="country" class="" type="text" name="country"/>
+            <button id='addButton' v-on:click="AddCountry" class="add-button">Add</button>
+            <ul>
+                <li v-for="country in arCountries">
+                    {{ country }}
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript" src="/script.js"></script>
+    </body>
+</html>

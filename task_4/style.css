@@ -1,0 +1,26 @@
+.container {
+    margin-left:35%;
+    margin-right:15%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#result {
+    height:20px;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+}
+
+li {
+    margin-top: 5px;
+}
+
+.add-button {
+    background-color: white;
+    border-color: orange; 
+}
