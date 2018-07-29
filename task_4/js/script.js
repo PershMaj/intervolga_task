@@ -48,6 +48,7 @@ var main = new Vue({
                     for(country in arCountries){
                         main.arCountries.push(arCountries[country]);
                     }
+                    main.result = 'Не хотите добавить немного стран?';
                 }
                 ShowResult();
             } 
