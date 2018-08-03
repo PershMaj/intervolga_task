@@ -1,3 +1,4 @@
+//add country to db and add to country list
 function AddCountryAjax() {
     if(xhr.status === 200){
         if(xhr.responseText == 'error'){
@@ -11,6 +12,7 @@ function AddCountryAjax() {
     }
 }
 
+//show all countries in db and result message
 function GetCountryListAjax () {
     if(xhr.status === 200){
         if(xhr.responseText == 'error'){
@@ -27,12 +29,12 @@ function GetCountryListAjax () {
         ShowResult();
     }
 }
-
-function Ajax(data){
+//send ajax requests
+function Ajax(data, onloadFunc){
     xhr = new XMLHttpRequest();
     path = '/php/ajax.php?';
     xhr.open('GET', path+data, true);
-    xhr.onload = AddCountryAjax;
+    xhr.onload = onloadFunc;
     xhr.send();
 }
 
@@ -40,34 +42,6 @@ function Ajax(data){
 function ShowResult(){
     main.showResult = true;
     setTimeout(function(){
-                main.showResult = false;
+        main.showResult = false;
     },3000);
 }
-
-var main = new Vue({
-    el: '#main',
-    data: {
-        country: null,
-        arCountries:[],
-        result: '',
-        showResult: false,
-    },
-    created: function() {//get countries list on page load
-        xhr = new XMLHttpRequest();
-        path = '/php/ajax.php?';
-        xhr.open('GET', path+'getCountries=1', true);
-        xhr.onload = GetCountryListAjax;
-        xhr.send();
-    },
-    methods: {
-        AddCountry: function(){
-            if(this.country){
-                request = 'country=' + this.country;
-                Ajax(request);
-            } else {
-                this.result = 'Пустая строка';
-                ShowResult();
-            }
-        },
-    },
-});
