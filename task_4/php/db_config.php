@@ -5,3 +5,5 @@
  * Date: 03.08.18
  * Time: 18:13
  */
+
+$dsn = "sqlite:../sqlite.db";
