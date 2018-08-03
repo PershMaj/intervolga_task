@@ -1,19 +1,38 @@
+function AddCountryAjax() {
+    if(xhr.status === 200){
+        if(xhr.responseText == 'error'){
+            main.result = 'Ошибка записи';
+        } else {
+            main.result = 'Страна добавлена';
+            main.arCountries.push(xhr.responseText);
+            main.country = "";
+        }
+        ShowResult();
+    }
+}
+
+function GetCountryListAjax () {
+    if(xhr.status === 200){
+        if(xhr.responseText == 'error'){
+            main.result = 'Ошибка ошибка чтения списка стран';
+        } else if (!xhr.responseText){
+            main.result = 'Тут пусто, добавьте страны!';
+        } else {
+            arCountries = JSON.parse(xhr.responseText);
+            for(i=0;i<arCountries.data.length;i++){
+                main.arCountries.push(arCountries.data[i][0]);
+            }
+            main.result = 'Не хотите добавить немного стран?';
+        }
+        ShowResult();
+    }
+}
+
 function Ajax(data){
     xhr = new XMLHttpRequest();
     path = '/php/ajax.php?';
     xhr.open('GET', path+data, true);
-    xhr.onload = function (e) {
-        if(xhr.status === 200){
-            if(xhr.responseText != 'ok'){
-                main.result = 'Ошибка записи';
-            } else {
-                main.result = 'Страна добавлена';
-                main.arCountries.push(main.country);
-                main.country = "";
-            }
-            ShowResult();
-        }
-    } 
+    xhr.onload = AddCountryAjax;
     xhr.send();
 }
 
@@ -37,22 +56,7 @@ var main = new Vue({
         xhr = new XMLHttpRequest();
         path = '/php/ajax.php?';
         xhr.open('GET', path+'getCountries=1', true);
-        xhr.onload = function (){
-            if(xhr.status === 200){
-                if(xhr.responseText == 'error'){
-                    main.result = 'Ошибка ошибка чтения списка стран';
-                } else if (!xhr.responseText){
-                    main.result = 'Тут пусто, добавьте страны!';
-                } else {
-                    arCountries = xhr.responseText.split(/\$/);
-                    for(country in arCountries){
-                        main.arCountries.push(arCountries[country]);
-                    }
-                    main.result = 'Не хотите добавить немного стран?';
-                }
-                ShowResult();
-            } 
-        };
+        xhr.onload = GetCountryListAjax;
         xhr.send();
     },
     methods: {
