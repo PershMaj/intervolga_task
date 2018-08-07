@@ -6,23 +6,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php/funcs.php';
  * @var string $dsn Contains db connection settings
  */
 
-
-if($_GET['country']){
-    $country = htmlspecialchars(trim($_GET['country']));
-} else {
-    $country = '';
-}
-if($_GET['getCountries']){
-    $getCountries = $_GET['getCountries'];
-} else {
-    $getCountries = '';
-}
-
 try {
     if($link = new PDO($dsn)){
-        if($country){
+        if(isset($_GET['country'])){
+            $country = htmlspecialchars(trim($_GET['country']));
             echo AddCountry($link, $country);
-        } elseif ($getCountries) {
+        } elseif(isset($_GET['getCountries'])){
+            $getCountries = $_GET['getCountries'];
             print_r(GetCountryList($link));
         }
         $pdo = null;
