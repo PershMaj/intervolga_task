@@ -11,6 +11,7 @@ try {
         if(isset($_GET['country'])){
             $country = htmlspecialchars(trim($_GET['country']));
             echo AddCountry($link, $country);
+
         } elseif(isset($_GET['getCountries'])){
             $getCountries = $_GET['getCountries'];
             print_r(GetCountryList($link));

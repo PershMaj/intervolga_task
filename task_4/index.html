@@ -20,7 +20,7 @@
                     <input v-model.trim="country" class="" type="text" name="country"/>
                     <button id='addButton' v-on:click="AddCountry" class="add-button btn">Add</button>
                     <ol>
-                        <li v-for="country in arCountries">
+                        <li class="country-item" v-for="country in arCountries">
                             {{ country }}
                         </li>
                     </ol>

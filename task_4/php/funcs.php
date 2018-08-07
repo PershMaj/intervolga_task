@@ -7,6 +7,7 @@
  */
 
 /**
+ * add country to db
  * @param $link
  * @param $country
  * @return string
@@ -23,6 +24,7 @@ function AddCountry($link, $country){
 }
 
 /**
+ * get all countries from db
  * @param $link
  * @return string
  */
